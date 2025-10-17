@@ -1,6 +1,7 @@
 const dropdown = document.querySelector('.dropdown')
 const option = document.querySelector('.options')
 const change = document.querySelector('.imperial')
+
 dropdown.addEventListener('click', () => {
     option.classList.toggle('show')
 })
@@ -109,10 +110,12 @@ form.addEventListener('submit', (e) => {
 })
 
 
+
 async function searchCountry() {
     try {
         const search = document.querySelector('.city_name');
-        const cityName = search.value;
+        let cityName = search.value;
+
         const response = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${cityName}&count=1&language=en`)
 
         if (!response.ok) {
@@ -122,6 +125,20 @@ async function searchCountry() {
         const data1 = await response.json()
         const long = data1.results[0].longitude
         const lat = data1.results[0].latitude
+        const name = data1.results[0].name
+        const country = data1.results[0].country
+        if (country == name) {
+            const location = `${country}`
+            locate.innerText = location
+
+        } else {
+            const location = `${name}, ${country}`
+            locate.innerText = location
+
+        }
+
+        console.log(data1);
+
 
         const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${long}&daily=weather_code,temperature_2m_max,temperature_2m_min&hourly=temperature_2m,weather_code&current=weather_code,temperature_2m,relative_humidity_2m,precipitation,wind_speed_10m,apparent_temperature&wind_speed_unit=${speedUnit}&temperature_unit=${unit}&precipitation_unit=${rainUnit}&timezone=auto&timeformat=unixtime`)
         if (!res.ok) {
@@ -134,10 +151,8 @@ async function searchCountry() {
         const currentUnits = data2.current_units
         const maxs = data2.daily.temperature_2m_max
         const mins = data2.daily.temperature_2m_min
-        const timezone = data2.timezone
         const unixTimestamp = data2.current.time
         const dailyUnixTimestamp = data2.daily.time
-        const location = timezone.split('/').reverse().join(', ')
         const weatherCode = current.weather_code
         const dailyWeatherCode = data2.daily.weather_code
         console.log(dailyWeatherCode);
@@ -356,7 +371,6 @@ async function searchCountry() {
 
 
 
-        locate.innerText = location
 
         document.getElementById('max-1').innerText = Math.round(maxs[0])
         document.getElementById('max-2').innerText = Math.round(maxs[1])
