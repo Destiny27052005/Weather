@@ -315,6 +315,9 @@ form button {
     main {
         margin-top: 3rem;
     }
+     .st {
+        margin-left: 25%;
+    }
     .icon_unit {
         width: 25%;
     }
@@ -422,3 +425,4 @@ form button {
         min-height: 210px;
     }
 }
+
