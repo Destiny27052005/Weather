@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="favicon-32x32.png" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <title>Weather Forecast</title>
+</head>
+
+<body>
+    <!-- header -->
+    <header>
+        <img src="logo.svg" alt="" class="logo">
+        <div class="unit_dropdown">
+            <div class="dropdown">
+                <img src="icon-units.svg" alt="" class="icon_unit">
+                <h5 class="unit">Units</h5>
+                <img src="icon-dropdown.svg" alt="" class="icon">
+            </div>
+            <div class="options">
+                <div class="option">
+                    <button class="imperial first">Switch to Imperial</button>
+                    <div>
+                        <p>Temperature</p>
+                        <button class="celsius" value="celsius">Celsius(C) <img src="icon-checkmark.svg" alt=""
+                                class="metric_mark"></button>
+                        <button class="fahrenheit" value="fahrenheit">Fahrenheit(F) <img src="icon-checkmark.svg"
+                                class="imperial_mark"></button>
+                    </div>
+                    <div>
+                        <p>Wind Speed</p>
+                        <button class="km" value="kmh">km/h <img src="icon-checkmark.svg" class="metric_mark"></button>
+                        <button class="mph" value="mph">mph <img src="icon-checkmark.svg"
+                                class="imperial_mark"></button>
+                    </div>
+                    <div>
+                        <p>Precipitation</p>
+                        <button class="milimeter" value="mm">Milimeters (mm) <img src="icon-checkmark.svg"
+                                class="metric_mark"></button>
+                        <button class="inch" value="inch">Inches (in) <img src="icon-checkmark.svg"
+                                class="imperial_mark"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+
+        <h1 class="title">How's the sky looking today?</h1>
+        <!-- Searching -->
+        <form action="">
+            <div class="search">
+                <img src="icon-search.svg" alt="">
+                <label for="search"> <input class="city_name" type="search" autocomplete="country-name" id="search"
+                        placeholder="Search for a place..."></label>
+            </div>
+            <button onclick="searchCountry()">Search</button>
+        </form>
+
+        <div class="wrap">
+            <!-- location, date and weather -->
+
+            <section>
+                <div class="display">
+                    <div class="pad">
+                        <h2 id="location"></h2>
+                        <p id="currentDate"></p>
+                    </div>
+                    <div class="st">
+                        <img src="" alt="" class="weather_code">
+                        <h2 class="apparent hide"><span class="temperature"></span>&deg</h2>
+                    </div>
+                </div>
+                <div class="two-grid">
+                    <div>
+                        <p>Feel like</p>
+                        <h3><span class="apparent_temperature">_</span><span id="temp_unit"></span></h3>
+                    </div>
+                    <div>
+                        <p>Humidity</p>
+                        <h3><span class="humidity">_</span><span id="humidity_unit">%</span></h3>
+                    </div>
+                    <div>
+                        <p>Wind</p>
+                        <h3><span class="wind">_</span> <span id="wind_unit">mph</span></h3>
+                    </div>
+                    <div>
+                        <p>Precipitation</p>
+                        <h3><span class="precipitation">_</span> <span id="precipitation_unit">in</span></h3>
+                    </div>
+                </div>
+
+
+                <!-- Daily Forecast -->
+                <div class="daily">
+                    <h3>Daily forecast</h3>
+                    <div class="three-grid">
+                        <div class="contain">
+                            <div class="hide">
+                                <h4 class="day">Tue</h4>
+                                <img src="icon-rain.webp" alt="" class="daily_code">
+                                <div id="daily_temp">
+                                    <p><span class="max_temp">68</span>&deg</p>
+                                    <p><span class="min_temp">57</span>&deg</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="contain">
+                            <div class="hide">
+                                <h4 class="day">Wed</h4>
+                                <img src="icon-drizzle.webp" alt="" class="daily_code">
+                                <div id="daily_temp">
+                                    <p><span class="max_temp">70</span>&deg</p>
+                                    <p><span class="min_temp">59</span>&deg</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="contain">
+                            <div class="hide">
+                                <h4 class="day">Thu</h4>
+                                <img src="icon-sunny.webp" alt="" class="daily_code">
+                                <div id="daily_temp">
+                                    <p><span class="max_temp">75</span>&deg</p>
+                                    <p><span class="min_temp">57</span>&deg</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="contain">
+                            <div class="hide">
+                                <h4 class="day">Fri</h4>
+                                <img src="icon-partly-cloudy.webp" alt="" class="daily_code">
+                                <div id="daily_temp">
+                                    <p><span class="max_temp">77</span>&deg</p>
+                                    <p><span class="min_temp">55</span>&deg</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="contain">
+                            <div class="hide">
+                                <h4 class="day">Sat</h4>
+                                <img src="icon-storm.webp" alt="" class="daily_code">
+                                <div id="daily_temp">
+                                    <p><span class="max_temp" s>70</span>&deg</p>
+                                    <p><span class="min_temp">59</span>&deg</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="contain">
+                            <div class="hide">
+                                <h4 class="day">Sun</h4>
+                                <img src="icon-snow.webp" alt="" class="daily_code">
+                                <div id="daily_temp">
+                                    <p><span class="max_temp">77</span>&deg</p>
+                                    <p><span class="min_temp">34</span>&deg</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="contain">
+                            <div class="hide">
+                                <h4 class="day">Mon</h4>
+                                <img src="icon-fog.webp" alt="" class="daily_code">
+                                <div id="daily_temp">
+                                    <p><span class="max_temp">75</span>&deg</p>
+                                    <p><span class="min_temp">59</span>&deg</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Hourly
+            <section>
+                <div class="hourly">
+                    <div>
+                        <h3>Hourly forecast</h3>
+                        <div class="dropdown"></div>
+                    </div>
+                    <div class="cell">
+                        <div>
+                            <img src="icon-overcast.webp" alt="">
+                            <h4>3PM</h4>
+                        </div>
+                        <p>68&deg</p>
+                    </div>
+                    <div class="cell">
+                        <div>
+                            <img src="icon-partly-cloudy.webp" alt="">
+                            <h4>4PM</h4>
+                        </div>
+                        <p>68&deg</p>
+                    </div>
+                    <div class="cell">
+                        <div>
+                            <img src="icon-sunny.webp" alt="">
+                            <h4>5PM</h4>
+                        </div>
+                        <p>68&deg</p>
+                    </div>
+                    <div class="cell">
+                        <div>
+                            <img src="icon-overcast.webp" alt="">
+                            <h4>6PM</h4>
+                        </div>
+                        <p>66&deg</p>
+                    </div>
+                    <div class="cell">
+                        <div>
+                            <img src="icon-snow.webp" alt="">
+                            <h4>7PM</h4>
+                        </div>
+                        <p>66&deg</p>
+                    </div>
+                    <div class="cell">
+                        <div>
+                            <img src="icon-fog.webp" alt="">
+                            <h4>8PM</h4>
+                        </div>
+                        <p>64&deg</p>
+                    </div>
+                    <div class="cell">
+                        <div>
+                            <img src="icon-snow.webp" alt="">
+                            <h4>9PM</h4>
+                        </div>
+                        <p>63&deg</p>
+                    </div>
+                    <div class="cell">
+                        <div>
+                            <img src="icon-overcast.webp" alt="">
+                            <h4>10PM</h4>
+                        </div>
+                        <p>63&deg</p>
+                    </div>
+                </div>
+            </section> -->
+        </div>
+    </main>
+
+
+    <script src="app.js"></script>
+</body>
+
+</html>
