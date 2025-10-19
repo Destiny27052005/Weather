@@ -137,15 +137,12 @@ async function searchCountry() {
 
         }
 
-        console.log(data1);
-
 
         const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${long}&daily=weather_code,temperature_2m_max,temperature_2m_min&hourly=temperature_2m,weather_code&current=weather_code,temperature_2m,relative_humidity_2m,precipitation,wind_speed_10m,apparent_temperature&wind_speed_unit=${speedUnit}&temperature_unit=${unit}&precipitation_unit=${rainUnit}&timezone=auto&timeformat=unixtime`)
         if (!res.ok) {
             throw new Error("Resources not found");
         }
         const data2 = await res.json()
-        console.log(data2);
 
         const current = data2.current
         const currentUnits = data2.current_units
@@ -155,7 +152,6 @@ async function searchCountry() {
         const dailyUnixTimestamp = data2.daily.time
         const weatherCode = current.weather_code
         const dailyWeatherCode = data2.daily.weather_code
-        console.log(dailyWeatherCode);
 
         const hide = document.querySelectorAll('.hide')
         for (const hides of hide) {
